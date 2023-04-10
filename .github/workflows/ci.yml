@@ -1,0 +1,18 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  iOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build-for-testing -scheme MapItemPicker -destination "platform=iOS Simulator,OS=latest,name=iPhone 14" | xcpretty

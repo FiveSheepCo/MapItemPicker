@@ -1,0 +1,129 @@
+// MARK: General
+select = "Auswählen";
+cancel = "Abbrechen";
+done = "Erledigt";
+legal = "Rechtliches"; // This is displayed at the bottom of the Map Item Sheet, as a link that leads to the apple legal page containing license notices for the data apple uses, which also contains all services MapItemPicker uses.
+
+// MARK: Search
+search = "Ort suchen";
+search.categories = "Kategorien";
+search.category = "Suche nach Kategorie";
+search.results = "Ergebnisse";
+search.moreSuggestions = "Weitere Vorschläge";
+search.loading = "Laden...";
+search.clearFilters = "Filter löschen";
+
+// MARK: Abstract Map Item Types
+mapItem.type.item = "Ort";
+mapItem.type.address = "Adresse";
+mapItem.type.cityRegion = "Nachbarschaft";
+mapItem.type.city = "Stadt";
+mapItem.type.inlandWater = "Gewässer";
+mapItem.type.state = "Land";
+mapItem.type.ocean = "Ozean";
+mapItem.type.country = "Staat";
+mapItem.type.territory = "Gebiet";
+
+// MARK: Item Sheet Buttons
+itemSheet.action.call = " Anrufen";
+itemSheet.action.visitWebsite = "Website";
+itemSheet.action.lookaround = "Lookaround";
+
+// MARK: Item Sheet Top Scrollable Items
+itemSheet.topScrollableItems.area = " Fläche";
+itemSheet.topScrollableItems.altitude = "Höhe";
+itemSheet.topScrollableItems.population = "Einwohnerzahl";
+
+// MARK: Item Sheet About Section
+itemSheet.about = "Über";
+itemSheet.about.moreOn = "Mehr auf";
+
+// MARK: Item Sheet Facts Section
+itemSheet.facts = "Fakten";
+itemSheet.facts.vegan = "Vegan";
+itemSheet.facts.vegetarisch = "Vegetarisch";
+itemSheet.facts.takeaway = "Zum Mitnehmen";
+itemSheet.facts.indoorSeating = "Innensitzplätze";
+itemSheet.facts.outdoorSeating = "Außensitzplätze";
+itemSheet.facts.smoking = "Rauchen";
+itemSheet.facts.internetAccess = "Internetzugang verfügbar";
+itemSheet.facts.internetAccess.no = "Kein Internetzugang";
+itemSheet.facts.internetAccess.wifi = "WLAN verfügbar";
+itemSheet.facts.internetAccess.terminal = "Internetzugang über bereitgestellte PCs";
+itemSheet.facts.internetAccess.wired = "Kabelgebundener Internetzugang verfügbar";
+itemSheet.facts.wheelchair = "Rollstuhlgerechter Zugang";
+itemSheet.facts.wheelchair.no = "Kein Rollstuhlgerechter Zugang";
+itemSheet.facts.wheelchair.designated = "Ausgewiesener Rollstuhlzugang";
+itemSheet.facts.wheelchair.limited = "Eingeschränkter Zugang für Rollstuhlfahrer";
+"itemSheet.facts.no %@" = "Kein %@";
+"itemSheet.facts.only %@" = "Nur %@";
+
+// MARK: Item Sheet Details Section
+itemSheet.details = "Details";
+itemSheet.details.location = "Ort";
+itemSheet.details.coordinates = "Koordinaten";
+itemSheet.details.level = "Stock";
+
+// MARK: Item Sheet Contact Section
+itemSheet.contact = "Kontakt";
+itemSheet.contact.website = "Website";
+itemSheet.contact.phone = "Telefonnummer";
+
+// MARK: Map Item Categories
+category.airport = "Flughafen";
+category.amusementPark = "Vergnügungspark";
+category.aquarium = "Aquarium";
+category.atm = "Geldautomat";
+category.bakery = "Bäckerei";
+category.bank = "Bank";
+category.beach = "Strand";
+category.brewery = "Brauerei";
+category.cafe = "Cafe";
+category.campground = "Zeltplatz";
+category.carRental = "Autovermietung";
+category.evCharger = "Ladestation für Elektrofahrzeuge";
+category.fireStation = "Feuerwache";
+category.fitnessCenter = "Fitnessstudio";
+category.foodMarket = "Lebensmittelmarkt";
+category.gasStation = "Tankstelle";
+category.hospital = "Krankenhaus";
+category.hotel = "Hotel";
+category.laundry = "Wäscherei";
+category.library = "Bibliothek";
+category.marina = "Hafen";
+category.movieTheater = "Kino";
+category.museum = "Museum";
+category.nationalPark = "Nationalpark";
+category.nightlife = "Nachtleben";
+category.park = "Park";
+category.parking = "Parken";
+category.pharmacy = "Apotheke";
+category.police = "Polizei";
+category.postOffice = "Postamt";
+category.publicTransport = "ÖPNV";
+category.restaurant = "Restaurant";
+category.restroom = "Toilette";
+category.school = "Schule";
+category.stadium = "Stadion";
+category.store = "Geschäft";
+category.theater = "Theater";
+category.university = "Universität";
+category.winery = "Weingut";
+category.zoo = "Zoo";
+
+// MARK: Map View Modes
+MKMapConfiguration.title.standard = "Standard";
+MKMapConfiguration.title.traffic = "Verkehr";
+MKMapConfiguration.title.hybrid = "Sattelit";
+
+// MARK: Image View
+image = "Bild";
+image.source.teaser = "Von";
+image.source.wikipedia = "Wikipedia";
+
+// MARK: Opening Hours
+openingHours = "Öffnungszeiten";
+openingHours.holiday = "Feiertage";
+openingHours.schoolHoliday = "Schulferien";
+
+Übersetzt mit www.DeepL.com/Translator (kostenlose Version)

@@ -1,0 +1,4 @@
+import MapKit
+
+extension MKPlacemark {
+}
