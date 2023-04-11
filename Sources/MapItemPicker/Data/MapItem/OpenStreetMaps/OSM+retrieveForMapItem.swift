@@ -69,7 +69,7 @@ public extension OSMItem {
 }
 
 class OpenStreetMapOverpassAPI {
-    static let shared = OpenStreetMapOverpassAPI(url: "https://z.overpass-api.de/api")
+    static let shared = OpenStreetMapOverpassAPI(url: "https://overpass-api.de/api")
     
     let endpoint: SKNetworking.Endpoint
     
