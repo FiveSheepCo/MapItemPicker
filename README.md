@@ -95,13 +95,13 @@ MapItemPicker(
     initialRegion: MKCoordinateRegion.unitedStates,
     standardView: { Text("Standard View") },
     searchControllerShown: $searchControllerShown,
-    standardSearchView: { Text("Saearch View") }
+    standardSearchView: { Text("Search View") }
 )
 ```
 
 ## Localization
 
-MapItemPicker contains localizations for categories, titles of sections in the views and other strings. Currently, only English and German are supported. If you can provide localization for any other language, please start a PR. You can copy the strings from the English `Localizable.strings` file at `Sources/MapItemPicker/Resources/en.lproj`. It's not a lot of localization keys, you will propably be done in 5 minutes.
+MapItemPicker contains localizations for categories, titles of sections in the views and other strings. Currently, only English and German are supported. If you can provide localization for any other language, please submit a PR. You can copy the strings from the English `Localizable.strings` file at `Sources/MapItemPicker/Resources/en.lproj`. It's not a lot of localization keys, you will propably be done in 5 minutes.
 
 ## TODO
 
