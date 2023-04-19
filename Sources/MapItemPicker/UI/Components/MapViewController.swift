@@ -199,7 +199,12 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
             
             RunLoop.main.perform { [self] in
                 let topmostController = mainSheet.topmostViewController
-                let topmostSheetPresentation = topmostController.sheetPresentationController!
+                
+                guard let topmostSheetPresentation = topmostController.sheetPresentationController else {
+                    print("Error: Could not find sheetPresentationController in topmost controller:", topmostController)
+                    return
+                }
+                
                 topmostSheetPresentation.animateChanges {
                     topmostController.sheetPresentationController!.selectedDetentIdentifier = standardDetentIdentifier
                 }
