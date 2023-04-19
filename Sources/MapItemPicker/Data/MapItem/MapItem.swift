@@ -202,6 +202,10 @@ public struct MapItem: Equatable, Hashable, Codable {
         
         return mapItem
     }
+    
+    public var nativeLocation: CLLocation {
+        .init(latitude: location.latitude, longitude: location.longitude)
+    }
 }
 
 class MapItemMKPlacemark: MKPlacemark {

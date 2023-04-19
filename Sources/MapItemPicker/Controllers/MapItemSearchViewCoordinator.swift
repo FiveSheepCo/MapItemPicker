@@ -48,11 +48,11 @@ public class MapItemPickerController: NSObject, ObservableObject {
                 ($0 as? MKClusterAnnotation)?.memberAnnotations.contains(annotation: selectedMapItem) ?? false
             }) ?? selectedMapItem
             
-            mapView.selectAnnotation(annotation, animated: true)
             let point = MKMapPoint(annotation.coordinate)
             if !mapView.visibleMapRect.contains(point) {
                 setBestRegion(for: [point], animated: true)
             }
+            mapView.selectAnnotation(annotation, animated: true)
         } else if let selectedMapItemCluster {
             mapView.selectAnnotation(selectedMapItemCluster, animated: true)
         } else {
@@ -118,6 +118,23 @@ extension MapItemPickerController: MKMapViewDelegate {
         }
         
         self.selectedMapItem = selectedMapItem
+    }
+    
+    public func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
+        let optionalAnnotation: MKAnnotation? = annotation
+        guard let annotation = optionalAnnotation else { return }
+        
+        if let cluster = annotation as? MKClusterAnnotation, cluster == selectedMapItemCluster {
+            selectedMapItemCluster = nil
+        } else if
+            let eq1 = annotation as? MapAnnotationEquatable,
+            let eq2 = selectedMapItem as? MapAnnotationEquatable,
+            eq1.annotationIsEqual(to: eq2)
+        {
+            selectedMapItem = nil
+        } else if annotation === selectedMapItem {
+            selectedMapItem = nil
+        }
     }
     
     public func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
