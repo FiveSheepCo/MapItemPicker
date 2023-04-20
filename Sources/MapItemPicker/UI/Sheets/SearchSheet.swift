@@ -141,16 +141,8 @@ struct SearchSheet<SearchView: View>: View {
                                     searcher.search(with: item)
                                 }
                             }
-                            ForEach(searcher.items) { itemCoordinator in
-                                let item = itemCoordinator.item
-                                SearchCell(
-                                    systemImageName: item.imageName,
-                                    color: item.color,
-                                    title: item.name,
-                                    subtitle: item.subtitle
-                                ) {
-                                    coordinator.manuallySet(selectedMapItem: itemCoordinator)
-                                }
+                            ForEach(searcher.items) { itemController in
+                                SearchCell(mapItemController: itemController, coordinator: coordinator)
                             }
                         } header: {
                             VStack {

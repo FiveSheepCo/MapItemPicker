@@ -8,6 +8,7 @@ public struct StandardSearchView: View {
     
     public var body: some View {
         List {
+            RecentMapItemsSection()
             Section("search.category".moduleLocalized) {
                 ForEach(MapItemCategory.allCases) { category in
                     SearchCell(

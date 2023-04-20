@@ -4,7 +4,13 @@ import MapKit
 
 /// A class that coordinates a MapItemPicker. It can retrieve or set the region of the map view.
 public class MapItemPickerController: NSObject, ObservableObject {
-    @Published private(set) var selectedMapItem: MapItemController? = nil
+    @Published private(set) var selectedMapItem: MapItemController? = nil {
+        didSet {
+            if oldValue != selectedMapItem {
+                RecentMapItemsController.shared.mapItemWasSelected(selectedMapItem)
+            }
+        }
+    }
     @Published var selectedMapItemCluster: MKClusterAnnotation? = nil
     @Published private(set) var shouldShowTopLeftButtons: Bool = true
     private var savedRectToSet: (rect: MKMapRect, animated: Bool)? = nil
@@ -42,7 +48,7 @@ public class MapItemPickerController: NSObject, ObservableObject {
         guard let mapView = currentMapView else { return }
         
         if let selectedMapItem {
-            let annotations = mapView.selectedAnnotations + mapView.annotations.filter({ !($0 is MKClusterAnnotation) })
+            let annotations = mapView.selectedAnnotations + mapView.annotations//.filter({ !($0 is MKClusterAnnotation) })
             let annotation =
             annotations.first(where: {
                 ($0 as? MKClusterAnnotation)?.memberAnnotations.contains(annotation: selectedMapItem) ?? false
@@ -110,6 +116,9 @@ extension MapItemPickerController: MKMapViewDelegate {
         if let coordinator = annotation as? MapItemController {
             selectedMapItem = coordinator
         } else if let cluster = annotation as? MKClusterAnnotation, cluster.memberAnnotations.first is MapItemController {
+            if let alreadySelected = self.selectedMapItem, cluster.memberAnnotations.contains(annotation: alreadySelected) {
+                return
+            }
             selectedMapItemCluster = cluster
         } else if #available(iOS 16, *), let item = annotation as? MKMapFeatureAnnotation {
             selectedMapItem = .init(mapFeatureAnnotation: item)

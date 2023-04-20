@@ -12,6 +12,9 @@ search.results = "Ergebnisse";
 search.moreSuggestions = "Weitere Vorschläge";
 search.loading = "Laden...";
 search.clearFilters = "Filter löschen";
+search.recentMapItems = "Zuletzt";
+search.recentMapItems.showMore = "Mehr zeigen";
+search.recentMapItems.showLess = "Weniger zeigen";
 
 // MARK: Abstract Map Item Types
 mapItem.type.item = "Ort";
