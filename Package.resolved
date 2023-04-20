@@ -1,14 +1,16 @@
 {
-  "pins" : [
-    {
-      "identity" : "schafkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Quintschaf/SchafKit.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "66d05e846aff52ebc69723be14c8745680c763e7"
+  "object": {
+    "pins": [
+      {
+        "package": "SchafKit",
+        "repositoryURL": "https://github.com/Quintschaf/SchafKit.git",
+        "state": {
+          "branch": null,
+          "revision": "66d05e846aff52ebc69723be14c8745680c763e7",
+          "version": "1.2.1"
+        }
       }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }
