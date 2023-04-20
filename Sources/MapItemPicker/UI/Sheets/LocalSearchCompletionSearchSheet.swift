@@ -55,8 +55,9 @@ struct LocalSearchCompletionSearchSheet: View {
                         }
                     }
                 } else {
+                    Spacer()
                     if #available(iOS 14.0, *) { ProgressView() }
-                    Text("search.loading", bundle: .module)
+                    Text("search.loading", bundle: .module).padding(.top, 4)
                     Spacer()
                 }
             }
