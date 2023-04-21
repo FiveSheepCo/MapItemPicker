@@ -24,7 +24,7 @@ public struct RecentMapItemsSection: View {
                         } label: {
                             Text(showMore ? "search.recentMapItems.showLess" : "search.recentMapItems.showMore", bundle: .module)
                                 .textCase(.none)
-                                .font(.callout)
+                                .font(.footnote)
                         }
                     }
                 }
