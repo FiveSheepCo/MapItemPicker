@@ -189,21 +189,42 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
         case .amusementPark:
             return "sparkles"
         case .aquarium:
-            return "fish.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "fish.fill"
+            }
+            return "mappin"
         case .atm:
-            return "dollarsign"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "dollarsign"
+            }
+            return "dollarsign.circle.fill"
         case .bakery:
-            return "birthday.cake"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "birthday.cake"
+            }
+            return "mappin"
         case .bank:
-            return "person.bust.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "person.bust.fill"
+            }
+            return "dollarsign.circle.fill"
         case .beach:
-            return "beach.umbrella.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "beach.umbrella.fill"
+            }
+            return "drop.fill"
         case .brewery:
-            return "wineglass.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "wineglass.fill"
+            }
+            return "takeoutbag.and.cup.and.straw.fill"
         case .cafe:
             return "cup.and.saucer.fill"
         case .campground:
-            return "tent.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "tent.fill"
+            }
+            return "powersleep"
         case .carRental:
             return "car.2.fill"
         case .evCharger:
@@ -211,7 +232,10 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
         case .fireStation:
             return "flame.fill"
         case .fitnessCenter:
-            return "dumbbell.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "dumbbell.fill"
+            }
+            return "sportscourt.fill"
         case .foodMarket:
             return "fork.knife"
         case .gasStation:
@@ -227,19 +251,25 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
         case .marina:
             return "ferry.fill"
         case .movieTheater:
-            return "popcorn.fill"
+            return "theatermasks.fill"
         case .museum:
             return "building.columns.fill"
         case .nationalPark:
             return "star.fill"
         case .nightlife:
-            return "figure.dance"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "figure.dance"
+            }
+            return "takeoutbag.and.cup.and.straw.fill"
         case .park:
-            return "tree.fill"
+            if #available(iOS 16.1, macOS 13.0, tvOS 16.1, watchOS 9.1, *) {
+                return "tree.fill"
+            }
+            return "leaf.fill"
         case .parking:
             return "parkingsign"
         case .pharmacy:
-            return "pill.fill"
+            return "pills.fill"
         case .police:
             return "shield.fill"
         case .postOffice:
@@ -249,7 +279,10 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
         case .restaurant:
             return "fork.knife"
         case .restroom:
-            return "toilet.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "toilet.fill"
+            }
+            return "mappin"
         case .school:
             return "graduationcap.fill"
         case .stadium:
@@ -261,7 +294,10 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
         case .university:
             return "graduationcap.fill"
         case .winery:
-            return "wineglass.fill"
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "wineglass.fill"
+            }
+            return "takeoutbag.and.cup.and.straw.fill"
         case .zoo:
             return "tortoise.fill"
         }
