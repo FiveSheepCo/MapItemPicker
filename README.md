@@ -10,7 +10,7 @@ MapItemPicker is a simple, yet highly customizable and powerful location picker 
   <img src="https://user-images.githubusercontent.com/31473326/230954413-98d3428c-69d2-4273-9d49-d0e032fb7173.png" width="200" alt="Sheet for New York City" />
   <img src="https://user-images.githubusercontent.com/31473326/230954539-8d2efe0c-7762-4572-b805-24c383c57ab7.png" width="200" alt="Search for Airport in Germany" /> 
   <img src="https://user-images.githubusercontent.com/31473326/230954579-8c47e8ce-1d57-4623-a6de-c615a0dd5c82.png" width="200" alt="Sheet for Central Park" />
-  <img src="https://user-images.githubusercontent.com/31473326/230954681-8a9bfc4e-957f-40b0-b345-7eb9f034e9f4.png" width="200" alt="Picker Inside a Full Screen Overlay" />
+  <img src="https://user-images.githubusercontent.com/31473326/233777851-dc26c6eb-41b4-404e-a9b0-2cf41b967f35.png" width="200" alt="Picker Inside a Full Screen Overlay" />
 </p>
 
 ## Description
