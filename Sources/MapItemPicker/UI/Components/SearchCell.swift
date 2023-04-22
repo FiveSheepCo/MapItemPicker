@@ -7,6 +7,24 @@ struct SearchCell: View {
     let subtitle: String
     let action: () -> Void
     
+    init(systemImageName: String, color: Color, title: String, subtitle: String, action: @escaping () -> Void) {
+        self.systemImageName = systemImageName
+        self.color = color
+        self.title = title
+        self.subtitle = subtitle
+        self.action = action
+    }
+    
+    init(mapItemController: MapItemController, coordinator: MapItemPickerController) {
+        self.systemImageName = mapItemController.item.imageName
+        self.color = mapItemController.item.color
+        self.title = mapItemController.item.name
+        self.subtitle = mapItemController.item.subtitle
+        self.action = {
+            coordinator.manuallySet(selectedMapItem: mapItemController)
+        }
+    }
+    
     var body: some View {
         Button(action: action) {
             HStack {
