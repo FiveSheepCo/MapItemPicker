@@ -19,6 +19,7 @@ struct SearchCell: View {
                             .padding(6)
                             .foregroundColor(.white)
                     }
+                    .frame(width: 30)
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.body.bold())
@@ -28,6 +29,7 @@ struct SearchCell: View {
                             .opacity(0.75)
                     }
                 }
+                Spacer()
             }
             .frame(height: 30)
             .foregroundColor(.label)

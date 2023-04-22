@@ -1,6 +1,17 @@
 import SwiftUI
 
+extension NavigationView {
+    
+    static var backgroundVisibilityAdjustable: Bool {
+        if #available(iOS 16.0, *) {
+            return true
+        }
+        return false
+    }
+}
+
 extension View {
+    
     @ViewBuilder func navigationBarBackgroundVisible() -> some View {
         if #available(iOS 16.0, *) {
             self.toolbarBackground(.visible, for: .navigationBar)

@@ -16,6 +16,7 @@ public class MapItemPickerController: NSObject, ObservableObject {
             }
         }
     }
+    internal var currentMainController: UIViewController?
     
     let locationController = LocationController()
     let searcher = MapItemSearchController()
@@ -134,6 +135,24 @@ extension MapItemPickerController: MKMapViewDelegate {
             selectedMapItem = nil
         } else if annotation === selectedMapItem {
             selectedMapItem = nil
+        }
+    }
+    
+    // MARK: Compatibility
+    
+    public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if #available(iOS 16, *) { return }
+        
+        if let annotation = view.annotation {
+            self.mapView(mapView, didSelect: annotation)
+        }
+    }
+    
+    public func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if #available(iOS 16, *) { return }
+        
+        if let annotation = view.annotation {
+            self.mapView(mapView, didDeselect: annotation)
         }
     }
     

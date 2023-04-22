@@ -27,6 +27,7 @@ struct MapControllerHolder<StandardView: View, SearchView: View>: UIViewControll
         
         RunLoop.main.perform {
             coordinator.currentMapView = controller.mapView
+            coordinator.currentMainController = controller
             controller.update(searchSheetShown: searchControllerShown)
         }
         

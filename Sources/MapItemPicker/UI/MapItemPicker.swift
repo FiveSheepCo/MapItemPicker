@@ -260,7 +260,7 @@ public struct MapItemPicker<StandardView: View, SearchView: View>: View {
                 coordinator.set(rect: initialMapRect, animated: false)
             }
         }
-        .edgesIgnoringSafeArea(.top)
+        .edgesIgnoringSafeArea(NavigationView<EmptyView>.backgroundVisibilityAdjustable ? .top : [])
         .overlayCompatible(alignment: .topTrailing) {
             TopRightButtons(
                 coordinator: coordinator,

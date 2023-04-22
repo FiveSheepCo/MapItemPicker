@@ -185,7 +185,11 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
         presentationController.prefersGrabberVisible = true
         presentationController.detents = standardDetents
         presentationController.selectedDetentIdentifier = standardDetentIdentifier
-        presentationController.largestUndimmedDetentIdentifier = bigDetentIdentifier
+        if #available(iOS 16, *) {
+            presentationController.largestUndimmedDetentIdentifier = bigDetentIdentifier
+        } else {
+            presentationController.largestUndimmedDetentIdentifier = .large
+        }
         presentationController.delegate = searchSheet.rootView.coordinator
         
         if controller == mainSheet {
