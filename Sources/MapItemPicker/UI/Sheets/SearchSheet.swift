@@ -1,4 +1,5 @@
 import SwiftUI
+import SchafKit
 
 struct SearchSheet<SearchView: View>: View {
     @ObservedObject var coordinator: MapItemPickerController
@@ -191,5 +192,10 @@ struct SearchSheet<SearchView: View>: View {
             }
         }
         .background(Color.systemGroupedBackground)
+        .onDisappear {
+            if dismissHandler == nil {
+                coordinator.currentMainController?.dismiss(animated: true)
+            }
+        }
     }
 }
