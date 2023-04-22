@@ -24,6 +24,7 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
     
     let standardSheet: UIHostingController<StandardView>
     let searchSheet: UIHostingController<SearchSheet<SearchView>>
+    var shownSearchSheet: UIHostingController<SearchSheet<SearchView>>?
     
     var primaryAction: MapItemPickerAction
     var actions: [MapItemPickerAction]
@@ -71,7 +72,6 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
             if let mapItemController {
                 mapItemDisplaySheet.rootView.itemCoordinator = mapItemController
             } else {
-                mapItemDisplaySheet.dismiss()
                 self.mapItemDisplaySheet = nil
             }
         } else if let mapItemController {
@@ -91,9 +91,9 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
                 shouldAddPadding: true
             ))
             mapItemDisplaySheet = sheet
-            
-            updateSheets()
         }
+        
+        updateSheets()
     }
     
     func update(selectedCluster: MKClusterAnnotation?) {
@@ -101,7 +101,6 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
             if let selectedCluster {
                 mapItemClusterSheet.rootView.cluster = selectedCluster
             } else {
-                mapItemClusterSheet.dismiss()
                 self.mapItemClusterSheet = nil
             }
         } else if let selectedCluster {
@@ -117,14 +116,13 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
                 )
             )
             mapItemClusterSheet = sheet
-            
-            updateSheets()
         }
+        
+        updateSheets()
     }
     
     func update(localSearchCompletion: MKLocalSearchCompletion?) {
         if localSearchCompletion != localSearchCompletionSearchSheet?.rootView.completion {
-            localSearchCompletionSearchSheet?.dismiss()
             localSearchCompletionSearchSheet = nil
             
             if let localSearchCompletion {
@@ -142,9 +140,9 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
                 )
                 localSearchCompletionSearchSheet = sheet
             }
-            
-            updateSheets()
         }
+        
+        updateSheets()
     }
     
     required init?(coder: NSCoder) {
@@ -158,22 +156,45 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
     }
     
     private func updateSheets() {
+        let currentlyPresentedSheet = mainSheet.topmostViewController
+        if
+            currentlyPresentedSheet != mainSheet &&
+            ![shownSearchSheet, mapItemDisplaySheet, mapItemClusterSheet, localSearchCompletionSearchSheet].contains(exactObject: currentlyPresentedSheet)
+        {
+            currentlyPresentedSheet.dismiss(animated: true) {
+                currentlyPresentedSheet.isModalInPresentation = false
+                self.updateSheets()
+            }
+            return
+        }
+        
         if let mapItemDisplaySheet {
             presentWithDetents(mapItemDisplaySheet)
         } else if let mapItemClusterSheet {
             presentWithDetents(mapItemClusterSheet)
         } else if let localSearchCompletionSearchSheet {
             presentWithDetents(localSearchCompletionSearchSheet)
+        } else if let shownSearchSheet {
+            presentWithDetents(shownSearchSheet)
         }
     }
     
     func update(searchSheetShown: Bool) {
-        if searchSheetShown {
-            presentWithDetents(searchSheet)
-        } else if searchSheet.isModalInPresentation {
-            searchSheet.dismiss()
-            searchSheet.isModalInPresentation = false
+        if searchSheetShown && shownSearchSheet == nil {
+            shownSearchSheet = searchSheet
+        } else if !searchSheetShown && shownSearchSheet != nil {
+            shownSearchSheet = nil
+        } else {
+            return
         }
+        
+        mapItemDisplaySheet = nil
+        mapItemClusterSheet = nil
+        localSearchCompletionSearchSheet = nil
+        
+        coordinator.manuallySet(selectedMapItem: nil)
+        
+        updateSheets()
     }
     
     private func presentWithDetents(_ controller: UIViewController) {
