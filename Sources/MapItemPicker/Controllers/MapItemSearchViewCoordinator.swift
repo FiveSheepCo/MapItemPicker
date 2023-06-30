@@ -130,9 +130,9 @@ extension MapItemPickerController: MKMapViewDelegate {
         self.selectedMapItem = selectedMapItem
     }
     
-    public func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
-        let optionalAnnotation: MKAnnotation? = annotation
-        guard let annotation = optionalAnnotation else { return }
+    // This function is necessary since the annotation handed to `mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation)` is sometimes nil. Casting this within the original function works in debug builds, but not in release builds (due to optimization, propably).
+    private func didDeselect(optional annotation: MKAnnotation?) {
+        guard let annotation = annotation else { return }
         
         if let cluster = annotation as? MKClusterAnnotation, cluster == selectedMapItemCluster {
             selectedMapItemCluster = nil
@@ -145,6 +145,10 @@ extension MapItemPickerController: MKMapViewDelegate {
         } else if annotation === selectedMapItem {
             selectedMapItem = nil
         }
+    }
+    
+    public func mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation) {
+        didDeselect(optional: annotation)
     }
     
     // MARK: Compatibility
