@@ -38,7 +38,7 @@ struct SearchSheet<SearchView: View>: View {
                     if !searcher.filteredCategories.isEmpty {
                         ForEach(searcher.filteredCategories) { category in
                             Button {
-                                searcher.filteredCategories.remove(object: category)
+                                searcher.filteredCategories.remove(subject: category)
                             } label: {
                                 Image(systemName: category.imageName)
                                 Text("✓　" + category.name)

@@ -1,11 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct MapItemImage: Identifiable, Equatable {
-    
-    static func ==(lhs: MapItemImage, rhs: MapItemImage) -> Bool {
-        lhs.url == rhs.url
-    }
+struct MapItemImage: Identifiable, Hashable {
     
     enum Source: String {
         case wikipedia
@@ -16,6 +12,10 @@ struct MapItemImage: Identifiable, Equatable {
     }
     
     var id: String { url.absoluteString }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(url)
+    }
     
     let url: URL
     let thumbnailUrl: URL
