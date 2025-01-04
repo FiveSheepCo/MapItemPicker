@@ -1,7 +1,7 @@
 # MapItemPicker 🗺️📍
 
 [![GithubCI_Status]][GithubCI_URL]
-[![Quintschaf_Badge]](https://quintschaf.com)
+[![FiveSheep_Badge]](https://fivesheep.co)
 [![LICENSE_BADGE]][LICENSE_URL]
 
 MapItemPicker is a simple, yet highly customizable and powerful location picker for SwiftUI.
@@ -115,8 +115,8 @@ MapItemPicker contains localizations for categories, titles of sections in the v
 
 <!-- References -->
 
-[GithubCI_Status]: https://github.com/quintschaf/MapItemPicker/actions/workflows/ci.yml/badge.svg?branch=main
-[GithubCI_URL]: https://github.com/quintschaf/MapItemPicker/actions/workflows/ci.yml
-[Quintschaf_Badge]: https://badgen.net/badge/Built%20and%20maintained%20by/Quintschaf/cyan?icon=https://quintschaf.com/assets/logo.svg
-[LICENSE_BADGE]: https://badgen.net/github/license/Quintschaf/MapItemPicker
-[LICENSE_URL]: https://github.com/Quintschaf/MapItemPicker/blob/master/LICENSE
+[GithubCI_Status]: https://github.com/FiveSheepCo/MapItemPicker/actions/workflows/ci.yml/badge.svg?branch=main
+[GithubCI_URL]: https://github.com/FiveSheepCo/MapItemPicker/actions/workflows/ci.yml
+[FiveSheep_Badge]: https://badgen.net/badge/Built%20and%20maintained%20by/FiveSheep/cyan
+[LICENSE_BADGE]: https://badgen.net/github/license/FiveSheepCo/MapItemPicker
+[LICENSE_URL]: https://github.com/FiveSheepCo/MapItemPicker/blob/master/LICENSE
