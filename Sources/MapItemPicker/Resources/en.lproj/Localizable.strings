@@ -117,7 +117,7 @@ category.zoo = "Zoo";
 // MARK: Map View Modes
 MKMapConfiguration.title.standard = "Standard";
 MKMapConfiguration.title.traffic = "Traffic";
-MKMapConfiguration.title.hybrid = "Sattelite";
+MKMapConfiguration.title.hybrid = "Satelite";
 
 // MARK: Image View
 image = "Image";

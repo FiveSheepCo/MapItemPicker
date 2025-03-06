@@ -1,0 +1,130 @@
+// MARK: General
+select = "Vælg";
+cancel = "Annuller";
+done = "Færdig";
+legal = "Juridisk"; // This is displayed at the bottom of the Map Item Sheet, as a link that leads to the apple legal page containing license notices for the data apple uses, which also contains all services MapItemPicker uses.
+
+// MARK: Search
+search = "Søg sted";
+search.categories = "Kategorier";
+search.category = "Søg efter kategori";
+search.results = "Resultater";
+search.moreSuggestions = "Flere forslag";
+search.loading = "Indlæser...";
+search.clearFilters = "Ryd filtre";
+search.recentMapItems = "Seneste";
+search.recentMapItems.showMore = "Vis flere";
+search.recentMapItems.showLess = "Vis færre";
+
+// MARK: Abstract Map Item Types
+mapItem.type.item = "Lokation";
+mapItem.type.address = "Addresse";
+mapItem.type.cityRegion = "Nabolag";
+mapItem.type.city = "By";
+mapItem.type.inlandWater = "Vandområde";
+mapItem.type.state = "Stat";
+mapItem.type.ocean = "Ocean";
+mapItem.type.country = "Land";
+mapItem.type.territory = "Territorium";
+
+// MARK: Item Sheet Buttons
+itemSheet.action.call = "Ring op";
+itemSheet.action.visitWebsite = "Websted";
+itemSheet.action.lookaround = "Se dig omkring";
+
+// MARK: Item Sheet Top Scrollable Items
+itemSheet.topScrollableItems.area = "Areal";
+itemSheet.topScrollableItems.altitude = "Højde";
+itemSheet.topScrollableItems.population = "Befolkning";
+
+// MARK: Item Sheet About Section
+itemSheet.about = "Om";
+itemSheet.about.moreOn = "Mere om";
+
+// MARK: Item Sheet Facts Section
+itemSheet.facts = "Fakta";
+itemSheet.facts.vegan = "Vegansk";
+itemSheet.facts.vegetarian = "Vegetarisk";
+itemSheet.facts.takeaway = "Takeaway";
+itemSheet.facts.indoorSeating = "Indendørs siddepladser";
+itemSheet.facts.outdoorSeating = "Udendørs siddepladser";
+itemSheet.facts.smoking = "Rygning";
+itemSheet.facts.internetAccess = "Internetadgang tilgængelig";
+itemSheet.facts.internetAccess.no = "Internetadgang utilgængelig";
+itemSheet.facts.internetAccess.wifi = "Wi-Fi tilgængelig";
+itemSheet.facts.internetAccess.terminal = "Terminal Internetadgang tilgængelig";
+itemSheet.facts.internetAccess.wired = "Kablet internetadgang tilgængelig";
+itemSheet.facts.wheelchair = "Rullestoladgang";
+itemSheet.facts.wheelchair.no = "Ingen rullestoladgang";
+itemSheet.facts.wheelchair.designated = "Udpeget rullestoladgang";
+itemSheet.facts.wheelchair.limited = "Begrænset rullestoladgang";
+"itemSheet.facts.no %@" = "Ingen %@";
+"itemSheet.facts.only %@" = "Kun %@";
+
+// MARK: Item Sheet Details Section
+itemSheet.details = "Oplysninger";
+itemSheet.details.location = "Lokation";
+itemSheet.details.coordinates = "Koordinater";
+itemSheet.details.level = "Niveau";
+
+// MARK: Item Sheet Contact Section
+itemSheet.contact = "Kontakt";
+itemSheet.contact.website = "Websted";
+itemSheet.contact.phone = "Telefonnummer";
+
+// MARK: Map Item Categories
+category.airport = "Lufthavn";
+category.amusementPark = "Forlystelsespark";
+category.aquarium = "Akvarium";
+category.atm = "ATM";
+category.bakery = "Bageri";
+category.bank = "Bank";
+category.beach = "Strand";
+category.brewery = "Bryggeri";
+category.cafe = "Café";
+category.campground = "Campingplads";
+category.carRental = "Biludlejning";
+category.evCharger = "Elbiloplader";
+category.fireStation = "Brandstation";
+category.fitnessCenter = "Fitnesscenter";
+category.foodMarket = "Madmarked";
+category.gasStation = "Benzintation";
+category.hospital = "Hospital";
+category.hotel = "Hotel";
+category.laundry = "Vaskeri";
+category.library = "Bibliotek";
+category.marina = "Marina";
+category.movieTheater = "Biograf";
+category.museum = "Museum";
+category.nationalPark = "Nationalpark";
+category.nightlife = "Natteliv";
+category.park = "Park";
+category.parking = "Parkering";
+category.pharmacy = "Apotek";
+category.police = "Politi";
+category.postOffice = "Posthus";
+category.publicTransport = "Offentlig transport";
+category.restaurant = "Restaurant";
+category.restroom = "Toilet";
+category.school = "Skole";
+category.stadium = "Stadium";
+category.store = "Butik";
+category.theater = "Teater";
+category.university = "Universitet";
+category.winery = "Vingård";
+category.zoo = "Zoologisk Have";
+
+// MARK: Map View Modes
+MKMapConfiguration.title.standard = "Standard";
+MKMapConfiguration.title.traffic = "Trafik";
+MKMapConfiguration.title.hybrid = "Satellit";
+
+// MARK: Image View
+image = "Billede";
+image.source.teaser = "Fra";
+image.source.wikipedia = "Wikipedia";
+
+// MARK: Opening Hours
+openingHours = "Åbningstider";
+openingHours.holiday = "Helligdage";
+openingHours.schoolHoliday = "Skoleferier";
