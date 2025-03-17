@@ -29,11 +29,18 @@ struct MapItemActionButtons: View {
         
         var inner: some View {
             VStack(spacing: 4) {
-                Image(systemName: imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 14)
-                Text(text, bundle: textIsFromModule ? .module : .main)
+                if #available(iOS 16.0, *) {
+                    Image(systemName: imageName)
+                        .fontWeight(.semibold)
+                    Text(text, bundle: textIsFromModule ? .module : .main)
+                        .fontWeight(.semibold)
+                } else {
+                    Image(systemName: imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 14)
+                    Text(text, bundle: textIsFromModule ? .module : .main)
+                }
             }
             .padding(.horizontal, 4)
             .padding(.vertical, 8)

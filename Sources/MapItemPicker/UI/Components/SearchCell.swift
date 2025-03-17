@@ -50,6 +50,7 @@ struct SearchCell: View {
                 Spacer()
             }
             .frame(height: 30)
+            .padding(.vertical, 4)
             .foregroundColor(.label)
         }
     }

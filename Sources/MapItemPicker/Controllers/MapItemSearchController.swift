@@ -243,7 +243,7 @@ extension MapItemSearchController {
             }
             
             RunLoop.main.perform {
-                self.completionItems = response.mapItems.compactMap(MapItemController.init(mapItem:))
+                self.completionItems = response.mapItems.removingDuplicates().compactMap(MapItemController.init(mapItem:))
                 if let singularCompletionItem = self.singularCompletionItem {
                     RecentMapItemsController.shared.addOrUpdate(mapItem: singularCompletionItem.item)
                 }

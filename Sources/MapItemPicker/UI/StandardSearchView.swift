@@ -25,3 +25,4 @@ public struct StandardSearchView: View {
         }
     }
 }
+    
