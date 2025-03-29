@@ -6,12 +6,12 @@ let standardDetentHeight: CGFloat = 300
 let miniDetentIdentifier = UISheetPresentationController.Detent.Identifier("mini")
 let standardDetentIdentifier = UISheetPresentationController.Detent.Identifier("standard")
 let bigDetentIdentifier = UISheetPresentationController.Detent.Identifier("big")
-
-private let standardDetents: [UISheetPresentationController.Detent] = {
+private let standardDetents: [UISheetPresentationController.Detent] = { () -> [UISheetPresentationController.Detent] in
     if #available(iOS 16, *) {
         return [
             .custom(identifier: miniDetentIdentifier, resolver: { _ in miniDetentHeight }),
             .custom(identifier: standardDetentIdentifier, resolver: { _ in standardDetentHeight }),
+            // -1 so that the screen doesn't get smaller, see https://stackoverflow.com/questions/75635250/leaving-the-presentingviewcontroller-full-screen-while-presenting-a-pagesheet?noredirect=1#comment133439969_75635250
             .custom(identifier: bigDetentIdentifier, resolver: { context in context.maximumDetentValue - 1 })
         ]
     }
@@ -64,24 +64,7 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
             mapView.selectableMapFeatures = [.physicalFeatures, .pointsOfInterest, .territories]
         }
         
-        // ADD LONG PRESS GESTURE FOR DROPPING PINS
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        mapView.addGestureRecognizer(longPressGesture)
-        
         self.view = mapView
-    }
-    
-    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        guard gesture.state == .began else { return }
-        
-        let touchPoint = gesture.location(in: mapView)
-        let coordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        annotation.title = "Pinned Location"
-        
-        mapView.addAnnotation(annotation)
     }
     
     func update(mapItemController: MapItemController?) {
@@ -196,16 +179,62 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
         }
     }
     
-    private func presentWithDetents(_ viewController: UIViewController) {
-        if let sheet = viewController.sheetPresentationController {
-            sheet.detents = standardDetents
-            sheet.prefersGrabberVisible = true
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-            sheet.selectedDetentIdentifier = standardDetentIdentifier
+    func update(searchSheetShown: Bool) {
+        if searchSheetShown && shownSearchSheet == nil {
+            shownSearchSheet = searchSheet
+        } else if !searchSheetShown && shownSearchSheet != nil {
+            shownSearchSheet = nil
+        } else {
+            return
         }
         
-        if presentedViewController != viewController {
-            present(viewController, animated: true)
+        mapItemDisplaySheet = nil
+        mapItemClusterSheet = nil
+        localSearchCompletionSearchSheet = nil
+        
+        coordinator.manuallySet(selectedMapItem: nil)
+        
+        updateSheets()
+    }
+    
+    private func presentWithDetents(_ controller: UIViewController) {
+        guard !controller.isModalInPresentation else { return }
+        
+        controller.isModalInPresentation = true
+        controller.modalPresentationStyle = .pageSheet
+        let presentationController = controller.sheetPresentationController!
+        presentationController.prefersGrabberVisible = true
+        presentationController.detents = standardDetents
+        presentationController.selectedDetentIdentifier = standardDetentIdentifier
+        if #available(iOS 16, *) {
+            presentationController.largestUndimmedDetentIdentifier = bigDetentIdentifier
+        } else {
+            presentationController.largestUndimmedDetentIdentifier = .large
+        }
+        presentationController.delegate = searchSheet.rootView.coordinator
+        
+        if controller == mainSheet {
+            RunLoop.main.perform { [self] in
+                if controller.isBeingPresented { return }
+                present(controller, animated: false)
+            }
+        } else {
+            // This dismisses software keybaords so that they are not stuck inside one of the views that is not on screen anymore. It has to be outside of the RunLoop block, so that it doesn't mess with our presentation.
+            mainSheet.view.window?.firstResponder?.resignFirstResponder()
+            
+            RunLoop.main.perform { [self] in
+                let topmostController = mainSheet.topmostViewController
+                
+                guard let topmostSheetPresentation = topmostController.sheetPresentationController else {
+                    print("Error: Could not find sheetPresentationController in topmost controller:", topmostController)
+                    return
+                }
+                
+                topmostSheetPresentation.animateChanges {
+                    topmostController.sheetPresentationController!.selectedDetentIdentifier = standardDetentIdentifier
+                }
+                topmostController.present(controller)
+            }
         }
     }
 }
