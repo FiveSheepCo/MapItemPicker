@@ -18,13 +18,18 @@ struct MapItemClusterSheet: View {
                     Text(cluster.title ?? .empty)
                         .font(.title.bold())
                     Text(cluster.subtitle ?? .empty)
+                        .foregroundStyle(.secondary)
+                        .font(.headline.bold())
                 }
                 Spacer()
                 Button(action: dismissHandler) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title)
-                        .foregroundColor(.gray)
+                    Image(systemName: "xmark")
+                        .font(.headline)
                 }
+                .tint(.gray)
+                .clipShape(Circle())
+                .buttonStyle(.bordered)
+                
             }
             .padding([.horizontal, .top])
             List {
