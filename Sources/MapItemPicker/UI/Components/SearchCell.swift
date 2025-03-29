@@ -28,16 +28,30 @@ struct SearchCell: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Circle()
-                    .fill(color)
-                    .overlay {
-                        Image(systemName: systemImageName)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(6)
-                            .foregroundColor(.white)
-                    }
-                    .frame(width: 30)
+                if #available(iOS 16.0, *) {
+                    Circle()
+                        .fill(color.gradient)
+                        .overlay {
+                            Image(systemName: systemImageName)
+                                .resizable()
+                                .scaledToFit()
+                                .padding(6)
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 30)
+                } else {
+                    // Fallback on earlier versions
+                    Circle()
+                        .fill(color)
+                        .overlay {
+                            Image(systemName: systemImageName)
+                                .resizable()
+                                .scaledToFit()
+                                .padding(6)
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 30)
+                }
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.body.bold())
@@ -50,6 +64,7 @@ struct SearchCell: View {
                 Spacer()
             }
             .frame(height: 30)
+            .padding(.vertical, 4)
             .foregroundColor(.label)
         }
     }

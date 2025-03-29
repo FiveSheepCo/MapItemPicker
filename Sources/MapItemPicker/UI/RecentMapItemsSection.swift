@@ -20,7 +20,9 @@ public struct RecentMapItemsSection: View {
                     Spacer()
                     if controller.recentMapItems.count > 3 {
                         Button {
-                            showMore.toggle()
+                            withAnimation {
+                                showMore.toggle()
+                            }
                         } label: {
                             Text(showMore ? "search.recentMapItems.showLess" : "search.recentMapItems.showMore", bundle: .module)
                                 .textCase(.none)

@@ -5,7 +5,38 @@ import AddressBook
 import SchafKit
 
 public struct MapItem: Equatable, Hashable, Codable {
-    public init(name: String, location: CLLocationCoordinate2D, region: CLCodableCircularRegion? = nil, featureAnnotationType: FeatureType? = nil, category: MapItemCategory? = nil, notes: String? = nil, street: String? = nil, housenumber: String? = nil, postcode: String? = nil, cityRegion: String? = nil, city: String? = nil, state: String? = nil, stateRegion: String? = nil, country: String? = nil, phone: String? = nil, website: String? = nil, wikidataBrand: String? = nil, wikipediaBrand: String? = nil, hasVegetarianFood: ExclusivityBool? = nil, hasVeganFood: ExclusivityBool? = nil, indoorSeating: PlaceBool? = nil, outdoorSeating: PlaceBool? = nil, internetAccess: InternetAccessType? = nil, smoking: PlaceBool? = nil, takeaway: ExclusivityBool? = nil, wheelchair: WheelchairBool? = nil, level: String? = nil, openingHours: OpeningHours? = nil) {
+    public init(
+        id: UUID = UUID(), // Ensures no crashes when searching, because all the MapItems would likely not be the same, and if thay somehow was the same, you'd be pretty unlucky, because the chances of that occuring is approx. 1 in 340 undecillion, or 1 in 340 billion billion billion billion billion billion.
+        name: String,
+        location: CLLocationCoordinate2D,
+        region: CLCodableCircularRegion? = nil,
+        featureAnnotationType: FeatureType? = nil,
+        category: MapItemCategory? = nil,
+        notes: String? = nil,
+        street: String? = nil,
+        housenumber: String? = nil,
+        postcode: String? = nil,
+        cityRegion: String? = nil,
+        city: String? = nil,
+        state: String? = nil,
+        stateRegion: String? = nil,
+        country: String? = nil,
+        phone: String? = nil,
+        website: String? = nil,
+        wikidataBrand: String? = nil,
+        wikipediaBrand: String? = nil,
+        hasVegetarianFood: ExclusivityBool? = nil,
+        hasVeganFood: ExclusivityBool? = nil,
+        indoorSeating: PlaceBool? = nil,
+        outdoorSeating: PlaceBool? = nil,
+        internetAccess: InternetAccessType? = nil,
+        smoking: PlaceBool? = nil,
+        takeaway: ExclusivityBool? = nil,
+        wheelchair: WheelchairBool? = nil,
+        level: String? = nil,
+        openingHours: OpeningHours? = nil
+    ) {
+        self.id = id
         self.name = name
         self.location = location
         self.region = region
@@ -40,6 +71,8 @@ public struct MapItem: Equatable, Hashable, Codable {
     enum IdentifierType: String, Codable {
         case openStreetMap, wikidata, wikimediaCommonsCategory, wikidataCommonsImageFilename, wikidataCommonsNighttimeViewImageFilename
     }
+    
+    public var id: UUID = UUID()
     
     public let name: String
     public let location: CLLocationCoordinate2D
