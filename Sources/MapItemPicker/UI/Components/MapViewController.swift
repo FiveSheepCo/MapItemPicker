@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 
 let miniDetentHeight: CGFloat = 80
-let standardDetentHeight: CGFloat = 300
+let standardDetentHeight: CGFloat = 400
 let miniDetentIdentifier = UISheetPresentationController.Detent.Identifier("mini")
 let standardDetentIdentifier = UISheetPresentationController.Detent.Identifier("standard")
 let bigDetentIdentifier = UISheetPresentationController.Detent.Identifier("big")
@@ -204,6 +204,7 @@ class MapViewController<StandardView: View, SearchView: View>: UIViewController 
         controller.modalPresentationStyle = .pageSheet
         let presentationController = controller.sheetPresentationController!
         presentationController.prefersGrabberVisible = true
+        presentationController.prefersScrollingExpandsWhenScrolledToEdge = false
         presentationController.detents = standardDetents
         presentationController.selectedDetentIdentifier = standardDetentIdentifier
         if #available(iOS 16, *) {

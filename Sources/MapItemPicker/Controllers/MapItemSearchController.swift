@@ -90,12 +90,13 @@ class MapItemSearchController: NSObject, ObservableObject {
         guard
             let currentRegion = coordinator?.region,
             let otherItemsResultRegion,
-            let otherItemsRequestRegion
+            let otherItemsRequestRegion,
+            coordinator?.selectedMapItem == nil && coordinator?.selectedMapItemCluster == nil
         else { return }
         
         let regionChange = currentRegion.span.longitudeDelta / otherItemsRequestRegion.span.longitudeDelta
         if
-            !MKMapRect(otherItemsResultRegion).contains(MKMapPoint(currentRegion.center)) ||
+            !MKMapRect(otherItemsRequestRegion).contains(MKMapPoint(currentRegion.center)) ||
             !(0.65...1.5).contains(regionChange)
         {
             reload()

@@ -13,7 +13,11 @@ class MapItemController: NSObject, ObservableObject, Identifiable {
             return false
         }
         
-        return self.item == other.item
+        return self.hashValue == other.hashValue
+    }
+    
+    override var hash: Int {
+        item.hashValue
     }
     
     @BackgroundPublished var item: MapItem

@@ -39,8 +39,13 @@ public class MapItemPickerController: NSObject, ObservableObject {
     }
     
     func manuallySet(selectedMapItem: MapItemController?) {
-        self.selectedMapItem = selectedMapItem
-        reloadSelectedAnnotation()
+        // This usually happens within a view update so we use a Task here
+        Task { @MainActor in
+            guard let mapView = currentMapView else { return }
+            
+            self.selectedMapItem = selectedMapItem
+            reloadSelectedAnnotation()
+        }
     }
     
     func reloadSelectedAnnotation() {
@@ -86,7 +91,8 @@ extension MapItemPickerController: MKMapViewDelegate {
         } else if let user = annotation as? MKUserLocation {
             return mapView.dequeueReusableAnnotationView(withIdentifier: "userLocation") ??
                 MKUserLocationView(annotation: user, reuseIdentifier: "userLocation")
-        } else if let cluster = annotation as? MKClusterAnnotation, let coordinators = cluster.memberAnnotations as? [MapItemController] {
+        } else if let cluster = annotation as? MKClusterAnnotation, cluster.memberAnnotations.contains(where: { $0 is MapItemController }) {
+            let coordinators = cluster.memberAnnotations.filter({ $0 is MapItemController }) as! [MapItemController]
             let occurancesByColor: [UIColor: Int]? =  coordinators.reduce(into: [:]) { partialResult, coordinator in
                 partialResult[coordinator.item.uiColor, default: 0] += 1
             }
@@ -127,23 +133,27 @@ extension MapItemPickerController: MKMapViewDelegate {
             annotationSelectionHandler(annotation)
         }
         
-        self.selectedMapItem = selectedMapItem
+        Task { @MainActor in
+            self.selectedMapItem = selectedMapItem
+        }
     }
     
     // This function is necessary since the annotation handed to `mapView(_ mapView: MKMapView, didDeselect annotation: MKAnnotation)` is sometimes nil. Casting this within the original function works in debug builds, but not in release builds (due to optimization, propably).
     private func didDeselect(optional annotation: MKAnnotation?) {
         guard let annotation = annotation else { return }
         
-        if let cluster = annotation as? MKClusterAnnotation, cluster == selectedMapItemCluster {
-            selectedMapItemCluster = nil
-        } else if
-            let eq1 = annotation as? MapAnnotationEquatable,
-            let eq2 = selectedMapItem as? MapAnnotationEquatable,
-            eq1.annotationIsEqual(to: eq2)
-        {
-            selectedMapItem = nil
-        } else if annotation === selectedMapItem {
-            selectedMapItem = nil
+        Task { @MainActor in
+            if let cluster = annotation as? MKClusterAnnotation, cluster == selectedMapItemCluster {
+                selectedMapItemCluster = nil
+            } else if
+                let eq1 = annotation as? MapAnnotationEquatable,
+                let eq2 = selectedMapItem as? MapAnnotationEquatable,
+                eq1.annotationIsEqual(to: eq2)
+            {
+                selectedMapItem = nil
+            } else if annotation === selectedMapItem {
+                selectedMapItem = nil
+            }
         }
     }
     
@@ -209,7 +219,7 @@ extension MapItemPickerController {
             edgePadding: .init(
                 top: 16,
                 left: 16,
-                bottom: currentPresentationDetent == miniDetentIdentifier ? miniDetentHeight : standardDetentHeight,
+                bottom: (currentPresentationDetent == miniDetentIdentifier ? miniDetentHeight : standardDetentHeight) + 16,
                 right: TopRightButtons.Constants.size + TopRightButtons.Constants.padding * 2
             ),
             animated: animated
