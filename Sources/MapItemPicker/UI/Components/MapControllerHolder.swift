@@ -53,7 +53,10 @@ struct MapControllerHolder<StandardView: View, SearchView: View>: UIViewControll
     }
     
     func refreshAnnotations(view: MKMapView) {
-        let newAnnotations: [MKAnnotation] = (coordinator.searcher.completionItems ?? coordinator.searcher.items) + annotations
+        var newAnnotations: [MKAnnotation] = (coordinator.searcher.completionItems ?? coordinator.searcher.items) + annotations
+        if let selected = coordinator.selectedMapItem, !newAnnotations.contains(annotation: selected) {
+            newAnnotations.append(selected)
+        }
         let oldAnnotations = view.annotations
         
         let annotationsToAdd = newAnnotations.filter({ !oldAnnotations.contains(annotation: $0) })
@@ -68,6 +71,11 @@ struct MapControllerHolder<StandardView: View, SearchView: View>: UIViewControll
         
         view.removeAnnotations(annotationsToRemove)
         view.addAnnotations(annotationsToAdd)
+        
+        // Sometimes the selectedAnnotation was not in the annotations before and thus has to be selected now.
+        if let selected = coordinator.selectedMapItem, annotationsToAdd.contains(annotation: selected) {
+            coordinator.reloadSelectedAnnotation()
+        }
     }
     
     func refreshOverlays(view: MKMapView) {

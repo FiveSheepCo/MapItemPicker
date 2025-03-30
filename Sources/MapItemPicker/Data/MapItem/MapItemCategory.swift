@@ -93,96 +93,177 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
     
     var nativeCategory: MKPointOfInterestCategory {
         switch self {
-        case .airport:
-            return .airport
-        case .amusementPark:
-            return .amusementPark
-        case .aquarium:
-            return .aquarium
-        case .atm:
-            return .atm
-        case .bakery:
-            return .bakery
-        case .bank:
-            return .bank
-        case .beach:
-            return .beach
-        case .brewery:
-            return .brewery
-        case .cafe:
-            return .cafe
-        case .campground:
-            return .campground
-        case .carRental:
-            return .carRental
-        case .evCharger:
-            return .evCharger
-        case .fireStation:
-            return .fireStation
-        case .fitnessCenter:
-            return .fitnessCenter
-        case .foodMarket:
-            return .foodMarket
-        case .gasStation:
-            return .gasStation
-        case .hospital:
-            return .hospital
-        case .hotel:
-            return .hotel
-        case .laundry:
-            return .laundry
-        case .library:
-            return .library
-        case .marina:
-            return .marina
-        case .movieTheater:
-            return .movieTheater
-        case .museum:
-            return .museum
-        case .nationalPark:
-            return .nationalPark
-        case .nightlife:
-            return .nightlife
-        case .park:
-            return .park
-        case .parking:
-            return .parking
-        case .pharmacy:
-            return .pharmacy
-        case .police:
-            return .police
-        case .postOffice:
-            return .postOffice
-        case .publicTransport:
-            return .publicTransport
-        case .restaurant:
-            return .restaurant
-        case .restroom:
-            return .restroom
-        case .school:
-            return .school
-        case .stadium:
-            return .stadium
-        case .store:
-            return .store
-        case .theater:
-            return .theater
-        case .university:
-            return .university
-        case .winery:
-            return .winery
-        case .zoo:
-            return .zoo
+        case .airport: .airport
+        case .amusementPark: .amusementPark
+        case .aquarium: .aquarium
+        case .atm: .atm
+        case .bakery: .bakery
+        case .bank: .bank
+        case .beach: .beach
+        case .brewery: .brewery
+        case .cafe: .cafe
+        case .campground: .campground
+        case .carRental: .carRental
+        case .evCharger: .evCharger
+        case .fireStation: .fireStation
+        case .fitnessCenter: .fitnessCenter
+        case .foodMarket: .foodMarket
+        case .gasStation: .gasStation
+        case .hospital: .hospital
+        case .hotel: .hotel
+        case .laundry: .laundry
+        case .library: .library
+        case .marina: .marina
+        case .movieTheater: .movieTheater
+        case .museum: .museum
+        case .nationalPark: .nationalPark
+        case .nightlife: .nightlife
+        case .park: .park
+        case .parking: .parking
+        case .pharmacy: .pharmacy
+        case .police: .police
+        case .postOffice: .postOffice
+        case .publicTransport: .publicTransport
+        case .restaurant: .restaurant
+        case .restroom: .restroom
+        case .school: .school
+        case .stadium: .stadium
+        case .store: .store
+        case .theater: .theater
+        case .university: .university
+        case .winery: .winery
+        case .zoo: .zoo
         }
     }
     
     public var id: String { rawValue }
     
-    var name: String {
+    public var name: String {
         "category.\(rawValue)".moduleLocalized
     }
     
-    var imageName: String {
+    public var circledImageName: String? {
+        switch self {
+        case .airport:
+            return "airplane.circle.fill"
+        case .amusementPark:
+            return nil // No equivalent for "sparkles.circle.fill"
+        case .aquarium:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "fish.circle.fill"
+            }
+            return "mappin.circle.fill"
+        case .atm:
+            return "dollarsign.circle.fill"
+        case .bakery:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return nil // No equivalent for "birthday.cake.circle.fill"
+            }
+            return "mappin.circle.fill"
+        case .bank:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "person.bust.circle.fill"
+            }
+            return "dollarsign.circle.fill"
+        case .beach:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return nil // No "beach.umbrella.circle.fill"
+            }
+            return "drop.circle.fill"
+        case .brewery:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return nil // No "wineglass.circle.fill"
+            }
+            return nil
+        case .cafe:
+            return nil // No "cup.and.saucer.circle.fill"
+        case .campground:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return nil // No "tent.circle.fill"
+            }
+            return nil
+        case .carRental:
+            return nil // No "car.2.circle.fill"
+        case .evCharger:
+            return nil // No "powerplug.circle.fill"
+        case .fireStation:
+            return "flame.circle.fill"
+        case .fitnessCenter:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return nil // No "dumbbell.circle.fill"
+            }
+            return nil
+        case .foodMarket:
+            return nil // No "basket.circle.fill"
+        case .gasStation:
+            return "fuelpump.circle.fill"
+        case .hospital:
+            return "cross.circle.fill"
+        case .hotel:
+            return "bed.double.circle.fill"
+        case .laundry:
+                if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) {
+                    return "tshirt.circle.fill"
+                }
+                return nil
+        case .library:
+            return "books.vertical.circle.fill"
+        case .marina:
+            return nil // No "ferry.circle.fill"
+        case .movieTheater:
+            return "theatermasks.circle.fill"
+        case .museum:
+            return "building.columns.circle.fill"
+        case .nationalPark:
+            return "star.circle.fill"
+        case .nightlife:
+            if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, *) {
+                return "figure.dance.circle.fill"
+            }
+            return nil
+        case .park:
+            if #available(iOS 16.1, macOS 13.0, tvOS 16.1, watchOS 9.1, *) {
+                return "tree.circle.fill"
+            }
+            return "leaf.circle.fill"
+        case .parking:
+            return "parkingsign.circle.fill"
+        case .pharmacy:
+            return "pills.circle.fill"
+        case .police:
+            return "shield.circle.fill"
+        case .postOffice:
+            return "envelope.circle.fill"
+        case .publicTransport:
+            return "tram.circle.fill"
+        case .restaurant:
+            return "fork.knife.circle.fill"
+        case .restroom:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return "toilet.circle.fill"
+            }
+            return "mappin.circle.fill"
+        case .school:
+            return "graduationcap.circle.fill"
+        case .stadium:
+            return "sportscourt.circle.fill"
+        case .store:
+            return "bag.circle.fill"
+        case .theater:
+            return "theatermasks.circle.fill"
+        case .university:
+            return "graduationcap.circle.fill"
+        case .winery:
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                return nil // No "wineglass.circle.fill"
+            }
+            return nil // No "takeoutbag.and.cup.and.straw.fill"
+        case .zoo:
+            return nil // No "tortoise.circle.fill"
+        }
+    }
+    
+    public var imageName: String {
         switch self {
         case .airport:
             return "airplane"
@@ -237,7 +318,7 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
             }
             return "sportscourt.fill"
         case .foodMarket:
-            return "fork.knife"
+            return "basket.fill"
         case .gasStation:
             return "fuelpump.fill"
         case .hospital:
@@ -303,24 +384,30 @@ public enum MapItemCategory: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    var color: UIColor {
+    public var color: UIColor {
         switch self {
-        case .bakery, .brewery, .cafe, .foodMarket, .laundry, .nightlife, .store:
-            return .orange
-        case .amusementPark, .aquarium, .movieTheater, .museum, .restaurant, .theater, .winery, .zoo:
-            return .systemPink
-        case .atm, .bank, .carRental, .police, .postOffice:
-            return .gray
-        case .airport, .fitnessCenter, .gasStation, .parking, .publicTransport, .beach, .marina:
-            return .init(red: 0.33, green: 0.33, blue: 1) // lightblue
-        case .campground, .evCharger, .nationalPark, .park, .stadium:
-            return .init(red: 0, green: 0.75, blue: 0) // darkgreen
-        case .fireStation, .hospital, .pharmacy:
-            return .red
-        case .hotel, .restroom:
-            return .purple
-        case .library, .school, .university:
-            return .brown
+            case .bakery, .brewery, .cafe, .restaurant, .nightlife:
+                return .systemOrange
+            case .laundry, .foodMarket, .store:
+                return .systemYellow
+            case .amusementPark, .aquarium, .movieTheater, .museum, .theater, .winery, .zoo:
+                return .systemPink
+            case .atm, .bank, .carRental, .police, .postOffice:
+                return .systemGray
+            case .fitnessCenter, .beach, .marina:
+                return .systemCyan
+            case .airport, .gasStation, .parking, .publicTransport:
+                return .systemBlue
+            case .evCharger:
+                return .systemMint
+            case .campground, .nationalPark, .park, .stadium:
+                return .systemGreen
+            case .fireStation, .hospital, .pharmacy:
+                return .systemRed
+            case .hotel, .restroom:
+                return .systemPurple
+            case .library, .school, .university:
+                return .systemBrown
         }
     }
 }

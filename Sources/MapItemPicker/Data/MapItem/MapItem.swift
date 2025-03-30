@@ -4,7 +4,7 @@ import SwiftUI
 import AddressBook
 import SchafKit
 
-public struct MapItem: Equatable, Hashable, Codable {
+public struct MapItem: Codable {
     public init(name: String, location: CLLocationCoordinate2D, region: CLCodableCircularRegion? = nil, featureAnnotationType: FeatureType? = nil, category: MapItemCategory? = nil, notes: String? = nil, street: String? = nil, housenumber: String? = nil, postcode: String? = nil, cityRegion: String? = nil, city: String? = nil, state: String? = nil, stateRegion: String? = nil, country: String? = nil, phone: String? = nil, website: String? = nil, wikidataBrand: String? = nil, wikipediaBrand: String? = nil, hasVegetarianFood: ExclusivityBool? = nil, hasVeganFood: ExclusivityBool? = nil, indoorSeating: PlaceBool? = nil, outdoorSeating: PlaceBool? = nil, internetAccess: InternetAccessType? = nil, smoking: PlaceBool? = nil, takeaway: ExclusivityBool? = nil, wheelchair: WheelchairBool? = nil, level: String? = nil, openingHours: OpeningHours? = nil) {
         self.name = name
         self.location = location
@@ -254,4 +254,19 @@ class MapItemMKPlacemark: MKPlacemark {
     }
     
     // TODO: Country Code
+}
+
+extension MapItem: Hashable, Equatable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(category)
+        hasher.combine(city)
+        hasher.combine(stateRegion)
+        hasher.combine(state)
+        hasher.combine(country)
+    }
+    
+    public static func ==(lhs: MapItem, rhs: MapItem) -> Bool {
+        lhs.hashValue == rhs.hashValue
+    }
 }
