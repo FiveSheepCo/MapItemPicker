@@ -9,7 +9,7 @@ extension MapItemSearchController {
     }
 }
 
-class MapItemSearchController: NSObject, ObservableObject {
+final class MapItemSearchController: NSObject, ObservableObject {
     
     weak var coordinator: MapItemPickerController?
     

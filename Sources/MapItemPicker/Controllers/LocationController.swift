@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-class LocationController: NSObject, CLLocationManagerDelegate, ObservableObject {
+final class LocationController: NSObject, CLLocationManagerDelegate, ObservableObject {
     let locationManager: CLLocationManager = .init()
     
     @Published var isAuthorized: Bool = false

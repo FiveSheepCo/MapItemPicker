@@ -1,6 +1,6 @@
 import MapKit
 
-extension MKLocalSearchCompletion: Identifiable {
+extension MKLocalSearchCompletion: @retroactive Identifiable {
     public var id: String {
         "\(title)//\(subtitle)"
     }

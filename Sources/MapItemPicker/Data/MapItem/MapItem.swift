@@ -208,7 +208,7 @@ public struct MapItem: Codable {
     }
 }
 
-class MapItemMKPlacemark: MKPlacemark {
+class MapItemMKPlacemark: MKPlacemark, @unchecked Sendable {
     let mapItem: MapItem
     
     init(mapItem: MapItem) {
